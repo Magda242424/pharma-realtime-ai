@@ -1,104 +1,158 @@
+
+
+````markdown
 # PHARMA – Real-Time AI Platform
 
-A real-time artificial intelligence platform for pharmaceutical process monitoring, anomaly detection, dissolved oxygen forecasting, streaming inference, and operational visualization.
+A real-time artificial intelligence platform for pharmaceutical process monitoring, anomaly detection, dissolved oxygen forecasting, streaming inference, operational monitoring, and Power BI analytics.
 
-The project combines machine learning, real-time event processing, REST API serving, experiment tracking, monitoring dashboards, and Power BI analytics.
+The project combines data preparation, machine learning, local event-driven inference, REST API serving, experiment tracking, automated testing, monitoring dashboards, and business intelligence.
 
-> **Project status:** Fully implemented and validated locally.
-> **Azure deployment:** Target architecture designed but not deployed due to the absence of an Azure subscription.
+> **Project status:** Core local implementation fully implemented and validated.
+>
+> **Prepared extensions:** Kafka, PostgreSQL/SQLAlchemy, Docker, additional ML components, and cloud deployment have been prepared or considered for future industrialization.
+>
+> **Azure deployment:** Target architecture designed but not deployed because no Azure subscription was available during development.
 
 ---
 
 ## 1. Project Overview
 
-The objective of this project is to design and implement a real-time AI pipeline capable of monitoring pharmaceutical process data and producing machine learning predictions.
+The objective of this project is to design and implement a real-time AI pipeline for pharmaceutical process monitoring.
 
-The platform processes sensor measurements such as:
+The platform processes simulated sensor measurements such as:
 
-* Temperature
-* pH
-* Dissolved oxygen
-* Agitation speed
-* Pressure
-* Flow rate
+- Temperature
+- pH
+- Dissolved oxygen
+- Agitation speed
+- Pressure
+- Flow rate
 
-Two machine learning tasks are implemented:
+Two machine learning tasks are currently implemented:
 
 1. **Anomaly detection** using Isolation Forest
 2. **Dissolved oxygen forecasting** using Random Forest Regressor
 
-The resulting predictions are exposed through a REST API, processed through a streaming inference pipeline, stored as prediction events, and visualized through Streamlit and Power BI.
+The predictions are used through a local streaming inference pipeline, REST API, Streamlit monitoring dashboard, and Power BI analytics.
+
+The project also contains several prepared components intended for future production industrialization. These components are clearly separated from the current validated implementation.
 
 ---
 
-## 2. Architecture
+## 2. Current Implementation vs Prepared Extensions
 
-The local architecture is designed as a cloud-ready architecture.
+The project contains three categories of components.
 
-```text
-                    PHARMA REAL-TIME AI
+### 🟢 Currently implemented and validated
 
-       ┌───────────────────────┐
-       │  Simulated IoT Data   │
-       │  producer.py          │
-       └───────────┬───────────┘
-                   │
-                   ▼
-       ┌───────────────────────┐
-       │ Streaming Layer       │
-       │ Python event stream   │
-       └───────────┬───────────┘
-                   │
-                   ▼
-       ┌───────────────────────┐
-       │ ML Inference          │
-       │ Isolation Forest      │
-       │ Random Forest         │
-       └───────────┬───────────┘
-                   │
-          ┌────────┴────────┐
-          ▼                 ▼
- ┌─────────────────┐ ┌─────────────────┐
- │ FastAPI         │ │ Prediction      │
- │ REST API        │ │ JSONL / CSV     │
- └────────┬────────┘ └────────┬────────┘
-          │                   │
-          ▼                   ▼
- ┌─────────────────┐ ┌─────────────────┐
- │ Streamlit       │ │ Power BI        │
- │ Monitoring      │ │ Analytics       │
- └─────────────────┘ └─────────────────┘
-```
+The following components are part of the current working pipeline:
 
-A corresponding Azure target architecture was also designed using Azure IoT Hub, Azure Event Hubs, Azure Stream Analytics, Azure Machine Learning, Azure Data Lake Storage Gen2, Power BI, Azure Monitor and API Management.
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- Isolation Forest
+- Random Forest Regressor
+- Joblib
+- MLflow
+- FastAPI
+- Uvicorn
+- Streamlit
+- Plotly
+- Matplotlib
+- Seaborn
+- Pytest
+- Python-based streaming
+- JSON Lines (JSONL)
+- Power BI Desktop
+- Git / GitHub
+- PowerShell
 
-The Azure architecture is a **target architecture only** and was not deployed during the project.
+### 🟡 Prepared for future extensions
+
+The following technologies or components were prepared or considered but are not required by the current validated pipeline:
+
+- Random Forest Classifier
+- SQLAlchemy
+- PostgreSQL
+- TimescaleDB
+- `psycopg`
+- Kafka
+- `kafka-python`
+- Docker
+- Docker Compose
+- Statsmodels
+- StandardScaler
+- MinMaxScaler
+- TimeSeriesSplit
+- Database environment variables
+- Kafka environment variables
+
+These components provide possible evolution paths for the project.
+
+### 🔵 Future production / cloud architecture
+
+The following components represent possible future industrialization:
+
+- Azure IoT Hub
+- Azure Event Hubs
+- Azure Stream Analytics
+- Azure Machine Learning
+- Azure Data Lake Storage Gen2
+- Azure ML Model Registry
+- Azure API Management
+- Azure Monitor
+- Azure DevOps / CI/CD
+- Real IoT devices
+- Real-time Power BI integration
+- Data drift monitoring
+- Model performance monitoring
+- Centralized logging and observability
+- Production-grade authentication and API security
 
 ---
 
-## 3. Machine Learning
+## 3. Tools & Technologies
 
-### Anomaly Detection
+### Programming & Development
 
-The anomaly detection component uses:
+- **Python** – main programming language
+- **Jupyter Notebook** – experimentation, data preparation, feature engineering, and machine learning workflow
+- **Git** – source code version control
+- **GitHub** – source code repository and documentation
+- **PowerShell** – local development and execution environment
 
-**Isolation Forest**
+### Data Science & Machine Learning
 
-The model analyses the selected process and lag features and identifies observations that differ from normal operating behaviour.
+- **Pandas** – data manipulation and analysis
+- **NumPy** – numerical computation
+- **Scikit-learn** – machine learning algorithms and evaluation
+- **Joblib** – model serialization and persistence
+- **MLflow** – experiment tracking
 
-### Dissolved Oxygen Forecasting
+### Current Machine Learning Models
 
-The forecasting component uses:
+- **Isolation Forest** – unsupervised anomaly detection
+- **Random Forest Regressor** – dissolved oxygen forecasting
 
-**Random Forest Regressor**
+### Prepared Machine Learning Components
 
-The model predicts the next dissolved oxygen value based on the selected process variables and historical lag features.
+The project also contains preparation for possible future machine learning extensions:
+
+- **Random Forest Classifier** – possible future supervised classification task
+- **TimeSeriesSplit** – possible advanced temporal cross-validation
+- **StandardScaler / MinMaxScaler** – possible preprocessing experiments
+- **Statsmodels** – possible statistical or time-series modelling approaches
+
+These components are not part of the current final model pipeline unless explicitly used by a corresponding script.
 
 ---
 
-## 4. Streaming Pipeline
+## 4. Streaming & Real-Time Processing
 
-The streaming layer simulates real-time sensor events.
+### Current implementation
+
+The current streaming layer is implemented in Python.
 
 The main components are:
 
@@ -106,26 +160,372 @@ The main components are:
 src/streaming/producer.py
 src/streaming/inference.py
 src/streaming/consumer.py
+````
+
+The local architecture is:
+
+```text
+Producer → Inference → Consumer
+```
+
+The producer simulates the arrival of pharmaceutical sensor events.
+
+The inference component applies the trained machine learning models.
+
+The consumer stores the resulting prediction events in JSON Lines format.
+
+### Kafka preparation
+
+Kafka is **not used in the current validated implementation**.
+
+The project nevertheless contains preparation for a possible Kafka-based architecture, including:
+
+* `kafka-python`
+* `KafkaProducer`
+* `KafkaConsumer`
+* Kafka environment variables
+* Kafka topic configuration
+
+Possible future architecture:
+
+```text
+Producer
+   ↓
+Kafka Topic
+   ↓
+Inference / Consumer
+```
+
+Kafka could therefore replace or extend the current local Python streaming layer in a production architecture.
+
+Azure Event Hubs is another possible production alternative.
+
+---
+
+## 5. Database & Persistence Preparation
+
+### Current implementation
+
+The current pipeline stores prediction results locally using:
+
+```text
+JSON Lines (JSONL)
+CSV
+```
+
+The main outputs are:
+
+```text
+exports/stream_predictions.jsonl
+exports/powerbi_predictions.csv
+```
+
+### PostgreSQL / SQLAlchemy preparation
+
+The project also contains preparation for a possible database persistence layer.
+
+Prepared technologies include:
+
+* SQLAlchemy
+* psycopg
+* PostgreSQL
+* TimescaleDB
+* PostgreSQL-related environment variables
+
+These components are **not required by the current local inference pipeline**.
+
+They are intended as a possible future persistence layer for:
+
+* sensor data
+* prediction events
+* anomaly results
+* forecasting results
+* operational data
+
+Possible future architecture:
+
+```text
+Streaming
+    ↓
+Inference
+    ↓
+PostgreSQL / TimescaleDB
+    ↓
+Analytics / Monitoring
+```
+
+---
+
+## 6. Docker Preparation
+
+Docker was considered during the project structuring phase as a possible containerization solution.
+
+The project structure was prepared for a possible Docker-based deployment.
+
+However, Docker is **not part of the current validated GitHub implementation** and is not required to run the current local pipeline.
+
+Possible future containerization could include:
+
+* FastAPI
+* Streamlit
+* MLflow
+* PostgreSQL
+* Kafka
+* Streaming services
+
+Docker should therefore be considered a **future deployment option**, not a currently deployed component.
+
+---
+
+## 7. Environment Configuration
+
+The project uses environment variables to separate configuration from application code.
+
+The `.env.example` file contains configuration examples for components such as:
+
+* MLflow
+* PostgreSQL
+* Kafka
+* application services
+* future infrastructure integrations
+
+Example variables include:
+
+```text
+MLFLOW_TRACKING_URI
+DATABASE_URL
+KAFKA_BOOTSTRAP_SERVERS
+KAFKA_TOPIC
+```
+
+The presence of a variable in `.env.example` does not necessarily mean that the corresponding service is currently active.
+
+For example, Kafka and database variables are prepared for future integrations.
+
+Real credentials and secrets should not be committed to the repository.
+
+---
+
+## 8. Architecture
+
+The current local architecture is:
+
+```text
+PHARMA REAL-TIME AI
+
+┌──────────────────────────┐
+│ Simulated Sensor Data    │
+│ generate_data.py         │
+└────────────┬─────────────┘
+             │
+             ▼
+┌──────────────────────────┐
+│ Data Validation          │
+│ validate_data.py         │
+└────────────┬─────────────┘
+             │
+             ▼
+┌──────────────────────────┐
+│ Feature Engineering      │
+│ build_features.py        │
+└────────────┬─────────────┘
+             │
+             ▼
+┌──────────────────────────┐
+│ Machine Learning         │
+│ Isolation Forest         │
+│ Random Forest Regressor  │
+└────────────┬─────────────┘
+             │
+             ▼
+┌──────────────────────────┐
+│ Local Streaming          │
+│ Producer → Inference     │
+│ → Consumer               │
+└────────────┬─────────────┘
+             │
+       ┌─────┴──────┐
+       ▼            ▼
+┌─────────────┐ ┌──────────────┐
+│  FastAPI    │ │ Predictions  │
+│  REST API   │ │ JSONL / CSV  │
+└──────┬──────┘ └──────┬───────┘
+       │               │
+       ▼               ▼
+┌─────────────┐ ┌──────────────┐
+│  Streamlit  │ │   Power BI   │
+│  Monitoring │ │   Analytics  │
+└─────────────┘ └──────────────┘
+```
+
+The architecture is designed so that the local streaming and storage layers can later be replaced or extended with production technologies such as Kafka, PostgreSQL, Azure Event Hubs, or Azure services.
+
+---
+
+## 9. Machine Learning
+
+### Anomaly Detection
+
+The anomaly detection component uses:
+
+**Isolation Forest**
+
+The model analyses selected process and lag features and identifies observations that differ from normal operating behaviour.
+
+### Dissolved Oxygen Forecasting
+
+The forecasting component uses:
+
+**Random Forest Regressor**
+
+The model predicts the next dissolved oxygen value based on selected process variables and historical lag features.
+
+### Prepared Classification Extension
+
+A **Random Forest Classifier** was also considered as a possible future supervised classification model.
+
+It is not part of the current final prediction pipeline.
+
+---
+
+## 10. Data Usage for Training, Evaluation and Streaming
+
+The local streaming pipeline is a simulation designed to demonstrate the complete end-to-end functioning of the platform.
+
+The project uses the generated sensor dataset as the common data source for the different stages of the pipeline.
+
+The data flow is:
+
+```text
+Generated sensor data
+        ↓
+sensor_data.csv
+        ↓
+Data validation
+        ↓
+sensor_data_clean.csv
+        ↓
+Feature engineering
+        ↓
+features.csv
+        ↓
+Model training and evaluation
+        ↓
+Saved models (.joblib)
+        ↓
+producer.py
+        ↓
+Simulated streaming
+        ↓
+inference.py
+        ↓
+Predictions
+        ↓
+Streamlit / Power BI
+```
+
+### Model Training and Evaluation
+
+The machine learning models are trained using the generated feature dataset.
+
+The anomaly detection model uses Isolation Forest.
+
+For dissolved oxygen forecasting, the data is split chronologically:
+
+* 80% of the observations are used for model training;
+* 20% are kept as a test set;
+* MAE and RMSE are calculated on the 20% test portion.
+
+The chronological split is used because the data represents a time-series process.
+
+### Streaming Simulation
+
+The streaming demonstration does not generate a second independent dataset.
+
+Instead, `producer.py` reads the existing `features.csv` file and emits its rows sequentially as simulated sensor events.
+
+Therefore:
+
+```text
+features.csv
+    ↓
+Row 1 → Event 1 → Inference → Prediction
+Row 2 → Event 2 → Inference → Prediction
+Row 3 → Event 3 → Inference → Prediction
+...
+```
+
+The producer therefore acts as a local simulation of a real-time sensor data source.
+
+The streaming results should be understood as an **inference demonstration on the existing dataset**, not as an independent model benchmark on a completely new unseen dataset.
+
+The forecasting model is evaluated separately on the chronological 20% test portion.
+
+---
+
+## 11. Feature Engineering
+
+Feature engineering is implemented as a separate project component.
+
+The project contains reusable feature definitions in:
+
+```text
+src/features/feature_definitions.py
+```
+
+Feature construction is performed by:
+
+```text
+scripts/build_features.py
+```
+
+The feature engineering process includes historical lag variables used to provide temporal information to the machine learning models.
+
+Examples include:
+
+```text
+dissolved_oxygen_lag_1
+dissolved_oxygen_lag_10
+dissolved_oxygen_lag_30
+```
+
+The resulting feature dataset is used by the machine learning pipeline and the local streaming simulation.
+
+---
+
+## 12. Streaming Pipeline
+
+The current streaming implementation is located in:
+
+```text
+src/streaming/
+├── producer.py
+├── inference.py
+└── consumer.py
 ```
 
 ### Producer
 
-`producer.py` generates simulated pharmaceutical process events.
+`producer.py` reads the existing `features.csv` dataset and emits its rows sequentially as simulated pharmaceutical process events.
 
-Each event contains equipment information, timestamps, process measurements and dissolved oxygen lag features.
+Each event contains process information, timestamps, equipment information, and dissolved oxygen lag features.
+
+The producer acts as a local simulation of a real-time sensor source.
 
 ### Inference
 
-`inference.py` validates each event and performs:
+`src/streaming/inference.py` validates each incoming event and performs:
 
 * anomaly prediction;
 * anomaly scoring;
 * anomaly classification;
 * dissolved oxygen forecasting.
 
+The saved `.joblib` models are loaded and applied to incoming events.
+
 ### Consumer
 
-`consumer.py` persists prediction events in JSON Lines format.
+`consumer.py` stores prediction events in JSON Lines format.
 
 Output:
 
@@ -133,9 +533,21 @@ Output:
 exports/stream_predictions.jsonl
 ```
 
+The architecture separates:
+
+```text
+Event generation
+       ↓
+Machine learning inference
+       ↓
+Prediction persistence
+```
+
+This structure can later be adapted to Kafka or Azure Event Hubs.
+
 ---
 
-## 5. REST API
+## 13. REST API
 
 The project exposes the machine learning functionality through FastAPI.
 
@@ -166,9 +578,11 @@ anomaly_score
 predicted_dissolved_oxygen
 ```
 
+The API provides an interface between the machine learning models and external applications.
+
 ---
 
-## 6. Monitoring Dashboard
+## 14. Monitoring Dashboard
 
 A Streamlit dashboard provides operational monitoring of the platform.
 
@@ -182,9 +596,19 @@ The dashboard displays:
 * streaming status;
 * latest streaming prediction.
 
+### Monitoring Screenshots
+
+![PHARMA Real-Time AI Anomaly Monitoring](docs/images/PHARMA_Real_Time_AI_anomaly_monitoring.PNG)
+
+![Process Overview and Process Variables](docs/images/Process_Overview_Process_Variable.PNG)
+
+![Row Diagnostic](docs/images/Row_Diagnostic.PNG)
+
+![Streaming Event History and Anomalies by Equipment](docs/images/Streaming_event_history_Anomalies_by_equipment.PNG)
+
 ---
 
-## 7. Power BI Dashboard
+## 15. Power BI Dashboard
 
 Prediction data is exported for Power BI through:
 
@@ -207,13 +631,21 @@ The Power BI dashboard contains:
 
 Power BI Desktop was used locally to build the analytical dashboard.
 
+The current implementation uses exported prediction data.
+
+A future extension could provide a more direct real-time Power BI integration.
+
+### Power BI Screenshot
+
+![Power BI Dashboard](docs/images/Powerbi_Dashboard.PNG)
+
 ---
 
-## 8. Experiment Tracking
+## 16. Experiment Tracking
 
 MLflow is used locally to track machine learning experiments.
 
-The tracked experiment includes parameters and metrics for the training run.
+The experiment tracks parameters and metrics for the training runs.
 
 Example metrics include:
 
@@ -222,24 +654,20 @@ MAE
 RMSE
 ```
 
-The experiment also records the model configuration, including:
+The experiment records the current model configuration, including:
 
 ```text
 IsolationForest
 RandomForestRegressor
 ```
 
+MLflow provides experiment tracking and a foundation for future model lifecycle management.
+
 ---
 
-## 9. Results
+## 17. Automated Testing
 
-The complete pipeline was validated locally.
-
-### Automated tests
-
-```text
-30 passed
-```
+The project includes automated tests covering the main functional components.
 
 The test suite covers:
 
@@ -253,7 +681,27 @@ The test suite covers:
 * streaming consumer
 * end-to-end streaming
 
-### Batch inference
+The complete local test suite reports:
+
+```text
+30 passed
+```
+
+The tests are implemented using Pytest.
+
+---
+
+## 18. Results
+
+The complete core pipeline was validated locally.
+
+### Automated Tests
+
+```text
+30 passed
+```
+
+### Streaming Inference Demonstration
 
 The streaming generator produced:
 
@@ -261,7 +709,7 @@ The streaming generator produced:
 4,910 events
 ```
 
-The complete inference pipeline processed all:
+The complete inference pipeline processed:
 
 ```text
 4,910 events
@@ -270,14 +718,20 @@ The complete inference pipeline processed all:
 Results:
 
 ```text
-Anomalies:           99
-Normal events:       4,811
-Anomaly rate:        2.02%
+Anomalies: 99
+Normal events: 4,811
+Anomaly rate: 2.02%
 Average anomaly score: 0.0775
 Average predicted DO: 7.5233
 ```
 
-The results were exported to:
+These results correspond to the inference demonstration performed by replaying the existing processed feature dataset through the local streaming pipeline.
+
+They should not be interpreted as an independent benchmark on a new unseen dataset.
+
+The forecasting model is evaluated separately using the chronological 20% test portion described in the data evaluation section.
+
+The prediction results were exported to:
 
 ```text
 exports/powerbi_predictions.csv
@@ -285,64 +739,126 @@ exports/powerbi_predictions.csv
 
 ---
 
-## 10. Project Structure
+## 19. Project Structure
+
+The current GitHub repository contains the following structure:
 
 ```text
-pharma/
+pharma-realtime-ai/
+│
+├── docs/
+│   └── images/
+│       ├── PHARMA_Real_Time_AI_anomaly_monitoring.PNG
+│       ├── Pharma_Real_Time AI Platforme on Azure.png
+│       ├── Powerbi_Dashboard.PNG
+│       ├── Process_Overview_Process_Variable.PNG
+│       ├── Row_Diagnostic.PNG
+│       └── Streaming_event_history_Anomalies_by_equipment.PNG
+│
+├── exports/
+│   ├── powerbi_predictions.csv
+│   └── stream_predictions.jsonl
+│
+├── scripts/
+│   ├── build_features.py
+│   ├── generate_data.py
+│   └── validate_data.py
 │
 ├── src/
 │   ├── api/
+│   │   ├── __init__.py
 │   │   └── main.py
 │   │
 │   ├── dashboard/
+│   │   ├── __init__.py
 │   │   ├── app.py
+│   │   ├── app_backup_before_streaming.py
 │   │   └── export_powerbi.py
 │   │
 │   ├── features/
+│   │   ├── __init__.py
+│   │   └── feature_definitions.py
+│   │
+│   ├── inference/
+│   │   └── __init__.py
 │   │
 │   ├── models/
+│   │   ├── __init__.py
+│   │   └── train.py
 │   │
 │   └── streaming/
-│       ├── producer.py
+│       ├── __init__.py
+│       ├── consumer.py
 │       ├── inference.py
-│       └── consumer.py
+│       └── producer.py
 │
 ├── tests/
+│   ├── __init__.py
 │   ├── test_api.py
 │   ├── test_data.py
 │   ├── test_features.py
 │   ├── test_ml.py
 │   └── test_streaming.py
 │
-├── data/
-│   ├── raw/
-│   ├── clean/
-│   └── features/
-│
-├── models/
-│   ├── anomaly_model.joblib
-│   └── forecasting_model.joblib
-│
-├── exports/
-│   ├── stream_predictions.jsonl
-│   └── powerbi_predictions.csv
-│
-├── notebooks/
-│
-├── requirements.txt
-└── README.md
+├── .env.example
+├── .gitignore
+├── README.md
+├── pharma-realtime-a.ipynb
+└── requirements.txt
 ```
+
+### Structure notes
+
+* `src/api/` contains the FastAPI application.
+* `src/dashboard/` contains the Streamlit dashboard and Power BI export logic.
+* `src/features/` contains reusable feature definitions.
+* `src/models/` contains model training code.
+* `src/streaming/` contains the current local streaming implementation.
+* `src/inference/` is currently reserved for a possible future standalone inference layer. The current event-level inference implementation is located in `src/streaming/inference.py`.
+* `scripts/` contains data generation, validation, and feature-building utilities.
+* `tests/` contains automated tests.
+* `exports/` contains generated prediction outputs.
+* `docs/images/` contains project and dashboard screenshots.
+
+The file `app_backup_before_streaming.py` is a previous dashboard version kept as a backup and is not the main dashboard entry point.
+
+Some generated or local directories are intentionally not versioned through `.gitignore`, including generated datasets, trained model artifacts, MLflow local artifacts, and local environment files.
 
 ---
 
-## 11. Local Installation
+## 20. Local Data and Generated Artifacts
 
-Clone the repository:
+Some project directories are used locally but are not necessarily visible in the GitHub repository.
 
-```bash
-git clone <repository-url>
-cd pharma
+Typical local working directories include:
+
+```text
+data/
+├── raw/
+└── processed/
 ```
+
+Generated model artifacts can include:
+
+```text
+models/
+├── anomaly_model.joblib
+└── forecasting_model.joblib
+```
+
+MLflow local tracking can use:
+
+```text
+mlruns/
+```
+
+These generated files are excluded from version control where appropriate.
+
+The repository therefore contains the code required to reproduce the processing pipeline without necessarily storing every generated dataset or model artifact.
+
+---
+
+## 21. Local Installation
 
 Create a Python virtual environment:
 
@@ -350,13 +866,19 @@ Create a Python virtual environment:
 python -m venv .venv
 ```
 
-Activate it on Windows:
+Activate it on Linux/macOS:
+
+```bash
+source .venv/bin/activate
+```
+
+Activate it on Windows PowerShell:
 
 ```powershell
 .venv\Scripts\Activate.ps1
 ```
 
-Install dependencies:
+Install the project dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -364,39 +886,69 @@ pip install -r requirements.txt
 
 ---
 
-## 12. Running the API
+## 22. Running the Data Pipeline
+
+Generate the sensor dataset:
+
+```bash
+python scripts/generate_data.py
+```
+
+Validate the generated data:
+
+```bash
+python scripts/validate_data.py
+```
+
+Build the feature dataset:
+
+```bash
+python scripts/build_features.py
+```
+
+The resulting data is then used by the machine learning and streaming pipeline.
+
+---
+
+## 23. Running the API
 
 Start FastAPI with:
 
-```powershell
+```bash
 python -m uvicorn src.api.main:app --host 127.0.0.1 --port 8000
 ```
 
-The API is then available locally at:
+The API is then available locally.
+
+Interactive API documentation is available through the FastAPI documentation endpoint.
+
+Main endpoints:
 
 ```text
-http://127.0.0.1:8000
+GET /
+GET /health
+POST /predict
 ```
 
 ---
 
-## 13. Running the Dashboard
+## 24. Running the Dashboard
 
 Start Streamlit with:
 
-```powershell
+```bash
 streamlit run src/dashboard/app.py --server.port 8502
 ```
 
-The dashboard can then be accessed locally through the Streamlit URL displayed in the terminal.
+The dashboard can then be accessed through the local Streamlit URL displayed in the terminal.
 
 ---
 
-## 14. Running the Tests
+## 25. Running the Tests
 
 Run the complete test suite:
 
-```powershell
+```bash
 python -m pytest tests -v
 ```
 
@@ -408,29 +960,159 @@ Expected result:
 
 ---
 
-## 15. Azure Target Architecture
+## 26. Running the Streaming Pipeline
 
-The project was designed with a possible Azure industrialisation path.
+The current local streaming pipeline is composed of:
 
-| Local component         | Azure target                                 |
-| ----------------------- | -------------------------------------------- |
-| `producer.py`           | Azure IoT Hub                                |
-| Python streaming        | Azure IoT Hub / Event Hubs                   |
-| Streaming processing    | Azure Stream Analytics                       |
-| Isolation Forest        | Azure Machine Learning                       |
-| Random Forest Regressor | Azure Machine Learning                       |
-| `.joblib` models        | Azure ML Model Registry                      |
-| FastAPI                 | Azure ML endpoint / API Management           |
-| `exports/`              | Azure Data Lake Storage Gen2                 |
-| Streamlit monitoring    | Cloud monitoring application / Azure Monitor |
-| Power BI Desktop        | Power BI                                     |
-| MLflow                  | Azure Machine Learning / MLflow              |
+```text
+src/streaming/producer.py
+src/streaming/inference.py
+src/streaming/consumer.py
+```
 
-This architecture represents a **proposed cloud deployment architecture**. No Azure resources were provisioned for this project.
+The conceptual flow is:
+
+```text
+features.csv
+    ↓
+producer.py
+    ↓
+inference.py
+    ↓
+consumer.py
+    ↓
+exports/stream_predictions.jsonl
+```
+
+The producer replays the existing feature dataset row by row.
+
+The inference component loads the trained models and generates predictions.
+
+The consumer stores the prediction events.
 
 ---
 
-## 16. Limitations
+## 27. Azure Target Architecture
+
+The project was designed with a possible Microsoft Azure industrialization path.
+
+| Current / Local Component | Possible Azure Target              |
+| ------------------------- | ---------------------------------- |
+| Simulated sensor data     | Azure IoT Hub                      |
+| Python streaming          | Azure IoT Hub / Event Hubs         |
+| Streaming processing      | Azure Stream Analytics             |
+| Isolation Forest          | Azure Machine Learning             |
+| Random Forest Regressor   | Azure Machine Learning             |
+| `.joblib` models          | Azure ML Model Registry            |
+| FastAPI                   | Azure ML endpoint / API Management |
+| Local prediction exports  | Azure Data Lake Storage Gen2       |
+| Monitoring                | Azure Monitor                      |
+| Power BI                  | Power BI                           |
+| MLflow                    | Azure Machine Learning / MLflow    |
+
+### Target Architecture
+
+```text
+Industrial Equipment
+        │
+        ▼
+Azure IoT Hub
+        │
+        ▼
+Azure Event Hubs
+        │
+        ▼
+Azure Stream Analytics
+        │
+        ├──────────────────────┐
+        ▼                      ▼
+Azure Machine Learning    Azure Data Lake
+        │                  Storage Gen2
+        ▼
+ML Inference Endpoint
+        │
+        ▼
+Azure API Management
+        │
+        ├─────────────────┐
+        ▼                 ▼
+    Power BI        Azure Monitor
+```
+
+This architecture represents a **proposed cloud deployment architecture**.
+
+No Azure resources were provisioned during the project.
+
+### Azure Architecture Diagram
+
+![Azure Target Architecture](docs/images/Pharma_Real_Time%20AI%20Platform%20on%20Azure.png)
+
+---
+
+## 28. Prepared Production Extensions
+
+### Database
+
+Possible future integration:
+
+```text
+Application / Streaming
+        ↓
+SQLAlchemy
+        ↓
+PostgreSQL / TimescaleDB
+```
+
+The current application does not depend on this database layer.
+
+### Event Streaming
+
+Possible future integration:
+
+```text
+Sensor / IoT
+    ↓
+Kafka or Azure Event Hubs
+    ↓
+Streaming Processing
+    ↓
+ML Inference
+```
+
+Kafka is therefore considered a possible production event-streaming technology, but is not used by the current local implementation.
+
+### Containerization
+
+Possible future deployment:
+
+```text
+Docker
+ ├── FastAPI
+ ├── Streamlit
+ ├── MLflow
+ ├── PostgreSQL
+ └── Streaming services
+```
+
+Docker is prepared as a future deployment option but is not required for the current local execution.
+
+### Machine Learning
+
+Possible future extensions include:
+
+* Random Forest classification
+* additional forecasting models
+* Statsmodels-based time-series modelling
+* TimeSeriesSplit validation
+* model comparison
+* hyperparameter optimization
+* model versioning
+* model monitoring
+* data drift monitoring
+
+---
+
+## 29. Limitations
 
 The main limitation is the absence of an Azure subscription during development.
 
@@ -440,37 +1122,162 @@ Consequently:
 * no cloud endpoint was deployed;
 * no Azure IoT Hub was connected to physical equipment;
 * no Azure Machine Learning endpoint was deployed;
-* no Azure Data Lake was used for production storage.
+* no Azure Data Lake was used for production storage;
+* no Azure Event Hubs pipeline was deployed;
+* no Azure Stream Analytics job was deployed.
 
-Instead, all functional components were implemented and validated locally.
+The local streaming pipeline is also a simulation.
 
-This approach allowed the complete data and machine learning pipeline to be tested before a potential cloud deployment.
+It replays the existing `features.csv` dataset rather than receiving new measurements from physical sensors or an external IoT platform.
+
+Therefore, the streaming results demonstrate the functioning of the end-to-end inference architecture, but they are not an independent evaluation of model performance on a completely new unseen dataset.
+
+The forecasting model is evaluated separately using a chronological 80/20 train-test split, with MAE and RMSE calculated on the 20% test portion.
 
 ---
 
-## 17. Future Improvements
+## 30. Future Improvements
 
 Possible future extensions include:
 
-* deployment to Azure Machine Learning;
-* integration with real IoT devices;
-* Azure IoT Hub ingestion;
-* Azure Event Hubs for scalable event streaming;
-* Azure Stream Analytics processing;
-* Azure Data Lake Storage Gen2;
-* automated CI/CD deployment;
-* model versioning and monitoring;
-* real-time Power BI integration;
-* production-grade authentication and API security.
+### Data & Infrastructure
+
+* PostgreSQL / TimescaleDB persistence
+* SQLAlchemy database layer
+* integration with real IoT devices
+* Azure IoT Hub ingestion
+* Azure Event Hubs
+* Azure Data Lake Storage Gen2
+* Docker-based deployment
+
+### Streaming
+
+* Kafka-based event streaming
+* Azure Event Hubs
+* Azure Stream Analytics
+* scalable distributed streaming architecture
+
+### Machine Learning
+
+* Random Forest classification
+* additional forecasting models
+* statistical time-series modelling
+* advanced temporal cross-validation
+* model comparison
+* hyperparameter optimization
+* model versioning
+* model monitoring
+* data drift monitoring
+
+### Application & Operations
+
+* real-time Power BI integration
+* production-grade authentication
+* API security
+* centralized logging
+* observability
+* automated CI/CD
+* cloud monitoring
+
+These elements are considered future extensions and are not presented as currently deployed functionality.
 
 ---
 
-## 18. Conclusion
+## 31. Conclusion
 
 PHARMA Real-Time AI demonstrates an end-to-end machine learning architecture for pharmaceutical process monitoring.
 
-The project integrates data generation, feature engineering, anomaly detection, forecasting, streaming inference, REST API serving, experiment tracking, operational monitoring and Business Intelligence.
+The current local implementation integrates:
 
-The complete local implementation has been tested successfully, with **30 automated tests passing** and **4,910 events processed through the inference pipeline**.
+* data generation;
+* data validation;
+* feature engineering;
+* anomaly detection;
+* dissolved oxygen forecasting;
+* streaming inference;
+* REST API serving;
+* experiment tracking;
+* operational monitoring;
+* Power BI analytics;
+* automated testing;
+* model persistence;
+* local event-driven processing.
 
-The resulting architecture is designed to be transferable to Microsoft Azure when the required cloud resources become available.
+The local implementation was validated with:
+
+```text
+30 automated tests passing
+4,910 events processed through the inference pipeline
+```
+
+The streaming pipeline intentionally reuses the existing processed feature dataset as its event source.
+
+This allows the complete real-time inference architecture to be demonstrated locally without physical IoT equipment or cloud streaming infrastructure.
+
+The forecasting model is evaluated separately using a chronological 80/20 train-test split, with MAE and RMSE calculated on the 20% test portion.
+
+The project also contains prepared extensions for:
+
+* Kafka;
+* PostgreSQL / TimescaleDB;
+* SQLAlchemy;
+* Docker;
+* Random Forest classification;
+* advanced time-series modelling;
+* cloud deployment.
+
+These components are intentionally separated from the current validated implementation and provide possible paths toward future production industrialization.
+
+---
+
+## 32. Tools & Methods
+
+This project demonstrates practical experience across the Data Science and AI lifecycle:
+
+* Python development
+* Data preparation and validation
+* Feature engineering
+* Time-series process data
+* Unsupervised machine learning
+* Supervised machine learning
+* Anomaly detection
+* Forecasting
+* Real-time inference
+* Event-driven architecture
+* REST API development
+* Model persistence
+* Experiment tracking
+* Automated testing with Pytest
+* Operational monitoring
+* Streamlit
+* Plotly
+* Power BI
+* Git and GitHub
+* PowerShell
+* Database integration preparation
+* Kafka integration preparation
+* Docker/containerization preparation
+* Cloud architecture design
+* Microsoft Azure architecture
+* AI/ML productionization concepts
+
+The project therefore demonstrates not only model development, but also the engineering, testing, integration, monitoring, and visualization aspects required to transform a Data Science model into an operational AI product.
+
+```
+
+### Les corrections importantes que j'ai faites
+
+- **`src/inference/`** est maintenant présenté comme un dossier préparé/réservé au futur, car ton vrai `inference.py` est dans `src/streaming/`.
+- **`src/features/feature_definitions.py`** et **`src/models/train.py`** apparaissent correctement.
+- **`scripts/`** apparaît correctement avec les 3 scripts.
+- **`app_backup_before_streaming.py`** est identifié comme backup et non comme composant principal.
+- **Docker** n'est plus présenté comme installé/intégré au dépôt GitHub actuel.
+- **SQLAlchemy/PostgreSQL/TimescaleDB** sont explicitement des préparations futures.
+- **Kafka** est explicitement une préparation et non le streaming actuellement utilisé.
+- **RandomForestClassifier, Statsmodels, TimeSeriesSplit et les scalers** sont dans les extensions préparées, pas dans les modèles actuels.
+- Les dossiers `data/`, `mlruns/` et les modèles `.joblib` sont expliqués comme **éléments locaux/générés et potentiellement exclus du GitHub**.
+- L'architecture Azure est clairement une **architecture cible**, pas une implémentation.
+- La distinction entre **évaluation 80/20** et **replay du dataset dans le streaming** est conservée. :contentReference[oaicite:2]{index=2}
+- La structure GitHub utilisée dans le README correspond maintenant aux captures que tu m'as envoyées.
+```
+
