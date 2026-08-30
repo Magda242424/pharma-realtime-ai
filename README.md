@@ -1,8 +1,4 @@
 
-
- 
-
-````markdown
 # PHARMA – Real-Time AI Platform
 
 A real-time artificial intelligence platform for pharmaceutical process monitoring, anomaly detection, dissolved oxygen forecasting, streaming inference, operational monitoring, and Power BI analytics.
