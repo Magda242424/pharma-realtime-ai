@@ -1048,7 +1048,7 @@ No Azure resources were provisioned during the project.
 
 ### Azure Architecture Diagram
 
-![Azure Target Architecture](docs/images/Pharma_Real_Time%20AI%20Platform%20on%20Azure.png)
+![Azure Target Architecture](docs/images/Pharma_Real_Time%20AI%20Platforme%20on%20Azure.png)
 
 ---
 
