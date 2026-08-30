@@ -1,7 +1,8 @@
 
 
+ 
+
 ````markdown
----
 # PHARMA – Real-Time AI Platform
 
 A real-time artificial intelligence platform for pharmaceutical process monitoring, anomaly detection, dissolved oxygen forecasting, streaming inference, operational monitoring, and Power BI analytics.
@@ -1281,4 +1282,3 @@ The project therefore demonstrates not only model development, but also the engi
 - La distinction entre **évaluation 80/20** et **replay du dataset dans le streaming** est conservée. :contentReference[oaicite:2]{index=2}
 - La structure GitHub utilisée dans le README correspond maintenant aux captures que tu m'as envoyées.
 ```
-
