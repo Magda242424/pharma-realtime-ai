@@ -596,6 +596,7 @@ The dashboard displays:
 
 ### Monitoring Screenshots
 
+
 ![PHARMA Real-Time AI Anomaly Monitoring](docs/images/PHARMA_Real_Time_AI_anomaly_monitoring.PNG)
 
 ![Process Overview and Process Variables](docs/images/Process_Overview_Process_Variable.PNG)
@@ -605,6 +606,7 @@ The dashboard displays:
 ![Streaming Event History and Anomalies by Equipment](docs/images/Streaming_event_history_Anomalies_by_equipment.PNG)
 
 ![Power BI Dashboard](docs/images/Powerbi_Dashboard.PNG)
+
 ---
 
 ## 15. Power BI Dashboard
