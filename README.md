@@ -596,7 +596,7 @@ The dashboard displays:
 
 ### Monitoring Screenshots
 
-<img src="./docs/images/PHARMA_Real_Time_AI_anomaly_monitoring.PNG" alt="PHARMA Anomaly Monitoring">
+![PHARMA Anomaly Monitoring](https://github.com/Magda242424/pharma-realtime-ai/blob/main/docs/images/PHARMA_Real_Time_AI_anomaly_monitoring.PNG?raw=true)
 
 ![Process Overview and Process Variables](docs/images/Process_Overview%20_Process_Variable.PNG)
 
