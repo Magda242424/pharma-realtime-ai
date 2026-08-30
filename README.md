@@ -604,11 +604,6 @@ The dashboard displays:
 
 ![Streaming Event History and Anomalies by Equipment](docs/images/Streaming_event_history%20_Anomalies_by_equipment.PNG)
 
-
-### Azure Architecture Diagram
-
-![Azure Target Architecture](docs/images/Pharma_Real_Time%20AI%20Platforme%20on%20Azure.png)
-
 ---
 
 ## 15. Power BI Dashboard
