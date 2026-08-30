@@ -604,6 +604,7 @@ The dashboard displays:
 
 ![Streaming Event History and Anomalies by Equipment](docs/images/Streaming_event_history_Anomalies_by_equipment.PNG)
 
+![Power BI Dashboard](docs/images/Powerbi_Dashboard.PNG)
 ---
 
 ## 15. Power BI Dashboard
