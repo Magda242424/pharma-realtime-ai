@@ -1263,18 +1263,4 @@ The project therefore demonstrates not only model development, but also the engi
 
 ```
 
-### Les corrections importantes que j'ai faites
 
-- **`src/inference/`** est maintenant présenté comme un dossier préparé/réservé au futur, car ton vrai `inference.py` est dans `src/streaming/`.
-- **`src/features/feature_definitions.py`** et **`src/models/train.py`** apparaissent correctement.
-- **`scripts/`** apparaît correctement avec les 3 scripts.
-- **`app_backup_before_streaming.py`** est identifié comme backup et non comme composant principal.
-- **Docker** n'est plus présenté comme installé/intégré au dépôt GitHub actuel.
-- **SQLAlchemy/PostgreSQL/TimescaleDB** sont explicitement des préparations futures.
-- **Kafka** est explicitement une préparation et non le streaming actuellement utilisé.
-- **RandomForestClassifier, Statsmodels, TimeSeriesSplit et les scalers** sont dans les extensions préparées, pas dans les modèles actuels.
-- Les dossiers `data/`, `mlruns/` et les modèles `.joblib` sont expliqués comme **éléments locaux/générés et potentiellement exclus du GitHub**.
-- L'architecture Azure est clairement une **architecture cible**, pas une implémentation.
-- La distinction entre **évaluation 80/20** et **replay du dataset dans le streaming** est conservée. :contentReference[oaicite:2]{index=2}
-- La structure GitHub utilisée dans le README correspond maintenant aux captures que tu m'as envoyées.
-```
