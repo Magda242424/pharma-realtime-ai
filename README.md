@@ -604,7 +604,6 @@ The dashboard displays:
 
 ![Streaming Event History and Anomalies by Equipment](docs/images/Streaming_event_history%20_Anomalies_by_equipment.PNG)
 
-![Power BI Dashboard](docs/images/Powerbi_Dashboard.PNG)
 
 ### Azure Architecture Diagram
 
